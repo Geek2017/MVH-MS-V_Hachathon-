@@ -1,5 +1,5 @@
 angular.module('newApp').controller('mainCtrl', function($scope) {
-    alert('123');
+
     $(document).ready(function() {
 
         // DO NOT REMOVE : GLOBAL FUNCTIONS!
