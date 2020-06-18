@@ -16,6 +16,30 @@ angular.module('newApp').controller('appleCtrl', function($scope) {
         $('#ffv').text(ff + '%');
         $('#ff').attr('style', 'width:' + ff + '%');
 
+        var fup = 100 - AFreshness;
+        var fdown = 100 - fup;
+
+        $('#fup').text(' ' + fdown + '%');
+        $('#fdown').text(' ' + fup + '%');
+
+        var mup = 100 - AMold;
+        var mdown = 100 - mup;
+
+        $('#mup').text(' ' + mdown + '%');
+        $('#mdown').text(' ' + mup + '%');
+
+        var rup = 100 - ARotten;
+        var rdown = 100 - rup;
+
+        $('#rup').text(' ' + rdown + '%');
+        $('#rdown').text(' ' + rup + '%');
+
+        var vup = 100 - AViral;
+        var vdown = 100 - vup;
+
+        $('#vup').text(' ' + vdown + '%');
+        $('#vdown').text(' ' + vup + '%');
+
         var mf = AMold.toString() * 0.25
         $('#mfv').text(mf + '%');
         $('#mf').attr('style', 'width:' + mf + '%');
