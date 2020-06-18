@@ -8,9 +8,11 @@ angular
                 controller: "mainCtrl"
             })
             .when('/apple', {
-                templateUrl: 'views/apple.html'
+                templateUrl: 'views/apple.html',
+                controller: "appleCtrl"
             })
             .when('/lettuce', {
-                templateUrl: 'views/lettuce.html'
+                templateUrl: 'views/lettuce.html',
+                controller: "lettuceCtrl"
             });
     });
