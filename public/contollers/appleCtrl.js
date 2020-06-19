@@ -62,10 +62,10 @@ angular.module('newApp').controller('appleCtrl', function($scope) {
         $("#AState").attr("data-percent", staterr.toString());
         console.log(staterr, Ahealthr)
     } else {
-        // localStorage.setItem("Ahealth", 0);
-        // localStorage.setItem("AMold", 0);
-        // localStorage.setItem("ARotten", 0);
-        // localStorage.setItem("AViral", 0);
+        localStorage.setItem("Ahealth", 0);
+        localStorage.setItem("AMold", 0);
+        localStorage.setItem("ARotten", 0);
+        localStorage.setItem("AViral", 0);
     }
 
 
@@ -148,6 +148,8 @@ angular.module('newApp').controller('appleCtrl', function($scope) {
                             var AMold = data.predictions[i].probability * 100
                             console.log(":::", Math.round(AMold));
                             localStorage.setItem('AMold', Math.round(AMold));
+
+                            alert('Image Successfully Analyze....')
                             window.location.href = "#/";
                             window.location.href = "#/apple";
                         }

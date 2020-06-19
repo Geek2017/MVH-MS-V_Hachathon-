@@ -1,5 +1,193 @@
 angular.module('newApp').controller('lettuceCtrl', function($scope) {
 
+    if (localStorage.getItem("LHealthy") && localStorage.getItem("LBacteria") && localStorage.getItem("LViral")) {
+
+        var LHealthy = localStorage.getItem("LHealthy")
+        $("#LHealthy").attr("data-percent", LHealthy.toString());
+
+        var LBacteria = localStorage.getItem("LBacteria")
+        $("#LBacteria").attr("data-percent", LBacteria.toString());
+
+        var LViral = localStorage.getItem("LViral")
+        $("#LViral").attr("data-percent", LViral.toString());
+
+        var LFDowny = localStorage.getItem("LFDowny")
+        $("#LFDowny").attr("data-percent", LFDowny.toString());
+
+        var LFSeptoria = localStorage.getItem("LFSeptoria")
+        $("#LFSeptoria").attr("data-percent", LFSeptoria.toString());
+
+        var LFWilt = localStorage.getItem("LFWilt")
+        $("#LFWilt").attr("data-percent", LFWilt.toString());
+
+        var LFPowdery = localStorage.getItem("LFPowdery")
+        $("#LFPowdery").attr("data-percent", LFPowdery.toString());
+
+        var LFungal = localStorage.getItem("LFDowny") * 0.25 + localStorage.getItem("LFSeptoria") * 0.25 + localStorage.getItem("LFWilt") * 0.25 + localStorage.getItem("LFPowdery") * 0.25;
+
+        var fdp = localStorage.getItem("LFDowny");
+        $('#fdp').text(fdp + '%');
+        $('#fd').attr('style', 'width:' + fdp + '%');
+
+        var fpp = localStorage.getItem("LFPowdery");
+        $('#fpp').text(fpp + '%');
+        $('#fp').attr('style', 'width:' + fpp + '%');
+
+        var fsp = localStorage.getItem("LFSeptoria");
+        $('#fsp').text(fsp + '%');
+        $('#fs').attr('style', 'width:' + fsp + '%');
+
+        var fwp = localStorage.getItem("LFWilt");
+        $('#fwp').text(fwp + '%');
+        $('#fw').attr('style', 'width:' + fwp + '%');
+
+        console.log(LFungal);
+
+        $("#LFungal").attr("data-percent", LFungal.toString());
+
+        var lstate = LFungal + localStorage.getItem("LHealthy") * 0.25 + localStorage.getItem("LBacteria") * 0.25 + localStorage.getItem("LViral") * 0.25
+
+        $("#lstate").attr("data-percent", lstate.toString());
+
+        var lhealth = localStorage.getItem("LHealthy") * 0.25 + lstate;
+
+        $("#lhealth").attr("data-percent", lhealth.toString());
+
+
+
+    } else {
+        localStorage.setItem("LHealthy", 0);
+        localStorage.setItem("LBacteria", 0);
+        localStorage.setItem("LBacteria", 0);
+        localStorage.setItem("LFDowny", 0);
+
+    }
+
+    $("#uploadtrigger").click(function() {
+        $('.file1').trigger('click');
+        console.log('click...')
+    });
+
+    $(".file1").change(function() {
+        openFile(event);
+        console.log('date sent..')
+    });
+
+    var openFile = function(file) {
+        var input = file.target;
+
+        var reader = new FileReader();
+        reader.onload = function() {
+            var dataURL = reader.result;
+
+            var params = {
+                // Request parameters
+                "application": "myTestApp"
+            };
+
+            var parts = dataURL.split(';base64,');
+            var contentType = parts[0].split(':')[1];
+            var raw = window.atob(parts[1]);
+            var rawLength = raw.length;
+
+            var uInt8Array = new Uint8Array(rawLength);
+
+            for (var i = 0; i < rawLength; ++i) {
+                uInt8Array[i] = raw.charCodeAt(i);
+            }
+
+            var imgContent = new Blob([uInt8Array], {
+                type: contentType
+            });
+
+            $.ajax({
+                    url: "https://southcentralus.api.cognitive.microsoft.com/customvision/v3.0/Prediction/aa2e4cb8-9e72-478b-807d-d7e39c849502/classify/iterations/Iteration10/image?" + $.param(params),
+                    beforeSend: function(xhrObj) {
+                        // Request headers
+                        xhrObj.setRequestHeader("Prediction-Key", "9d40c99161d54d43b36f6970b02b6578");
+                        xhrObj.setRequestHeader("Content-Type", "application/octet-stream");
+                    },
+                    type: "POST",
+                    // Request body
+                    data: imgContent,
+                    processData: false
+                })
+                .done(function(data) {
+
+
+                    for (var i = 0; i < data.predictions.length; i++) {
+
+                        console.log(data.predictions[i].tagName);
+
+                        if (data.predictions[i].tagName == "L-Healthy") {
+                            console.log(data.predictions[i].tagName, data.predictions[i].probability * 100);
+                            var LHealthy = data.predictions[i].probability * 100
+                            console.log(":::", Math.round(LHealthy));
+                            localStorage.setItem('LHealthy', Math.round(LHealthy));
+                        }
+                        if (data.predictions[i].tagName == "L-Bacteria") {
+                            console.log(data.predictions[i].tagName, data.predictions[i].probability * 100);
+                            var LBacteria = data.predictions[i].probability * 100
+                            console.log(":::", Math.round(LBacteria));
+                            localStorage.setItem('LBacteria', Math.round(LBacteria));
+                        }
+                        if (data.predictions[i].tagName == "L-Viral") {
+                            console.log(data.predictions[i].tagName, data.predictions[i].probability * 100);
+                            var LViral = data.predictions[i].probability * 100
+                            console.log(":::", Math.round(LViral));
+                            localStorage.setItem('LViral', Math.round(LViral));
+                        }
+
+
+                        if (data.predictions[i].tagName == "LF-Downy Mildew") {
+                            console.log(data.predictions[i].tagName, data.predictions[i].probability * 100);
+                            var LFDowny = data.predictions[i].probability * 100
+                            console.log(":::", Math.round(LFDowny));
+                            localStorage.setItem('LFDowny', Math.round(LFDowny));
+
+                        }
+                        if (data.predictions[i].tagName == "LF-Septoria Blight") {
+                            console.log(data.predictions[i].tagName, data.predictions[i].probability * 100);
+                            var LFSeptoria = data.predictions[i].probability * 100
+                            console.log(":::", Math.round(LFSeptoria));
+                            localStorage.setItem('LFSeptoria', Math.round(LFSeptoria));
+
+                        }
+                        if (data.predictions[i].tagName == "LF-Wilt and Leaf Blight") {
+                            console.log(data.predictions[i].tagName, data.predictions[i].probability * 100);
+                            var LFWilt = data.predictions[i].probability * 100
+                            console.log(":::", Math.round(LFWilt));
+                            localStorage.setItem('LFWilt', Math.round(LFWilt));
+
+                        }
+                        if (data.predictions[i].tagName == "LF-Powdery Mildew") {
+                            console.log(data.predictions[i].tagName, data.predictions[i].probability * 100);
+                            var LFPowdery = data.predictions[i].probability * 100
+                            console.log(":::", Math.round(LFPowdery));
+                            localStorage.setItem('LFPowdery', Math.round(LFPowdery));
+
+
+                            alert('Image Successfully Analyze....')
+                            window.location.href = "#/apple";
+                            window.location.href = "#/lettuce";
+
+                        }
+                    }
+
+
+
+
+
+
+                })
+                .fail(function() {
+                    alert("error");
+                });
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    };
+
 
     // DO NOT REMOVE : GLOBAL FUNCTIONS!
     pageSetUp();
