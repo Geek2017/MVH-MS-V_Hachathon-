@@ -193,28 +193,33 @@
                                         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 show-stats">
 
                                             <div class="row">
-                                                <div class="col-xs-6 col-sm-6 col-md-12 col-lg-12"> <span class="text">Freshness Frequency<span class="pull-right"  id="ffv"> 0%</span> </span>
+                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"> <span class="text">Freshness Frequency<span class="pull-right"  id="ffv"> 0%</span> </span>
                                                     <div class="progress">
                                                         <div id="ff" class="progress-bar bg-color-blueDark" style="width: 0%;"></div>
                                                     </div>
                                                 </div>
-                                                <div class="col-xs-6 col-sm-6 col-md-12 col-lg-12"> <span class="text">Mold Frequency<span class="pull-right" id="mfv">0%</span> </span>
+                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"> <span class="text">Mold Frequency<span class="pull-right" id="mfv">0%</span> </span>
                                                     <div class="progress">
                                                         <div id="mf" class="progress-bar bg-color-blue" style="width: 0%;"></div>
                                                     </div>
                                                 </div>
-                                                <div class="col-xs-6 col-sm-6 col-md-12 col-lg-12"> <span class="text">Rotten Frequency<span class="pull-right" id="rfv">0%</span> </span>
+                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"> <span class="text">Rotten Frequency<span class="pull-right" id="rfv">0%</span> </span>
                                                     <div class="progress">
                                                         <div id="rf" class="progress-bar bg-color-red" style="width: 0%;"></div>
                                                     </div>
                                                 </div>
-                                                <div class="col-xs-6 col-sm-6 col-md-12 col-lg-12"> <span class="text">Viral Frequency<span class="pull-right" id="vfv">0%</span> </span>
+                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"> <span class="text">Viral Frequency<span class="pull-right" id="vfv">0%</span> </span>
                                                     <div class="progress">
                                                         <div id="vf" class="progress-bar bg-color-greenLight" style="width: 0%;"></div>
                                                     </div>
                                                 </div>
-                                                <input class="file" type='file' accept='image/*' style="display: none;" />
-                                                <span id="uploadtrigger" class=" show-stat-buttons "> <span class="col-xs-12 col-sm-12 col-md-12 col-lg-12 "> <a href="javascript:void(0); " class="btn btn-info btn-block hidden-xs ">Analyze Apple Image</a> </span>                                                </span>
+                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                    <div>
+                                                        <input class="file" type='file' accept='image/*' style="display: none;" />
+                                                        <!-- <span id="uploadtrigger" class=" show-stat-buttons "> <span class="col-xs-12 col-sm-12 col-md-12 col-lg-12 "> <a href="javascript:void(0); " class="btn btn-info btn-block hidden-xs ">Analyze Apple Image</a> </span>                                                        </span> -->
+                                                        <input id="uploadtrigger" type="button" class="btn btn-info btn-block" value="Analyze Apple Image">
+                                                    </div>
+                                                </div>
 
                                             </div>
 

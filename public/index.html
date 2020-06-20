@@ -37,7 +37,7 @@
 <link rel="icon" href="./assets/img/favicon/favicon.ico" type="image/x-icon">
 
 <!-- GOOGLE FONT -->
-<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
 
 <!-- Specifying a Webpage Icon for Web Clip 
 			 Ref: https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html -->
@@ -59,6 +59,21 @@
 <script src="./assets/AngularJS/angular-route.js"></script>
 <!-- Firebase -->
 <script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
+<script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyDFX_A3qGpzL2K1MjBrpbebSdi_r9iZWQs",
+        authDomain: "mobiletest-api.firebaseapp.com",
+        databaseURL: "https://mobiletest-api.firebaseio.com",
+        projectId: "mobiletest-api",
+        storageBucket: "mobiletest-api.appspot.com",
+        messagingSenderId: "682355725569",
+        appId: "1:682355725569:web:7b474c81cdfb0fcd9b3700",
+        measurementId: "G-KTJHJXYNRB"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+</script>
 </head>
 
 <!--
@@ -477,14 +492,14 @@
     <script data-pace-options='{ "restartOnRequestAfter": true }' src="./assets/js/plugin/pace/pace.min.js"></script>
 
     <!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script>
         if (!window.jQuery) {
             document.write('<script src="./assets/js/libs/jquery-2.1.1.min.js"><\/script>');
         }
     </script>
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
     <script>
         if (!window.jQuery.ui) {
             document.write('<script src="./assets/js/libs/jquery-ui-1.10.3.min.js"><\/script>');
